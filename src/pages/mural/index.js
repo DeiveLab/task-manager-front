@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiPlus } from 'react-icons/fi';
 
-import { Header, Container, Task } from './styles'
+import { Header, Container, Task, TaskArea } from './styles'
 
 
 const Mural = () => {
@@ -12,10 +12,20 @@ const Mural = () => {
                     <span>TASK .IO</span>
                 </div>
             </Header>
-            <Task/>
-            <a>
+            <TaskArea>
+                <Task/>
+                <Task/>
+                <Task/>
+                <Task/>
+                <Task/>
+                <Task/>
+                <Task/>
+                <Task/>  
+            </TaskArea>
+            <a href="#/">
                 <FiPlus size={70}/>
             </a>
+           
         </Container>
     )
 

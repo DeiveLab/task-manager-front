@@ -4,12 +4,11 @@ export const Container = styled.div`
     max-width: 1200px;
     height: 90vh;
     margin: 0 auto;
-    position: relative;
 
     > a {
-        position: absolute;
-        bottom: 16px;
-        right: 16px;
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
         text-decoration: none;
         color: white;
 
@@ -22,6 +21,10 @@ export const Container = styled.div`
         &:hover {
             cursor: pointer;
         }
+     }
+
+    @media(max-width: 1024px) {
+        max-width: 1000px;
     }
 `;
 
@@ -41,8 +44,20 @@ export const Header = styled.div`
     }
 `;
 
+export const TaskArea = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+
+    @media(max-width: 768px) {
+        justify-content: center;
+    }
+`;
+
 export const Task = styled.div`
-    height: 200px;
-    width: 200px;
+    height: 190px;
+    width: 190px;
+    margin: 5px;
     background-color: white;
 `;
