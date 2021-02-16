@@ -38,13 +38,20 @@ const AuthProvider = ({ children }) => {
 
     }, []);
 
-    const signOut = useCallback(() => {
+    const signOut = useCallback(async () => {
+
+        await api.post('users/logout',{}, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + data.token
+            }
+        });
 
         localStorage.removeItem('@TaskManager:token');
         localStorage.removeItem('@TaskManager:user');
 
         setData({});
-    }, []);
+    }, [data.token]);
 
     return (
         <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>

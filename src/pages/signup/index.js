@@ -1,8 +1,11 @@
 import React, { useState, useCallback } from 'react';
+import { useHistory } from "react-router-dom";
 import { FiLogIn } from 'react-icons/fi';
 
-
 import { Container, LoginCard, Logo, CenteredContent } from './styles';
+import { useAuth } from '../../context/AuthContext';
+
+import api from '../../services/api';
 
 
 const SignUp = () => {
@@ -11,11 +14,28 @@ const SignUp = () => {
     const [name, setName] = useState('');
     const [age, setAge] = useState('');
 
+    const { signIn } = useAuth();
+    const history = useHistory();
+
     const submitHandler = useCallback(async (e) => {
         e.preventDefault();
-        console.log('beleza');
+        
+        try {
+            await api.post('/users', {
+                email,
+                password,
+                name,
+                age: parseInt(age, 10)
+            });
+    
+            await signIn({email, password});
+            history.push('/mural');
 
-    }, []);
+        } catch (err) {
+            console.log(err);
+        }
+        
+    }, [email, password, name, age, history, signIn]);
 
     return (
         <Container>

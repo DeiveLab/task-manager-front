@@ -46,6 +46,7 @@ export const LoginCard = styled.div`
     height: 500px;
     width: 400px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
@@ -79,6 +80,7 @@ export const LoginCard = styled.div`
 
     form{
         text-align: center;
+        
     }
 
     input{
@@ -127,4 +129,11 @@ export const LoginCard = styled.div`
         }
     }
 
+`;
+
+export const WrongLog = styled.div`
+    color: red;
+    position: absolute;
+    bottom: 30px;
+    left: 10px;
 `;

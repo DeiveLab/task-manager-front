@@ -1,25 +1,29 @@
 import React, { useState, useCallback } from 'react';
+import { useHistory } from "react-router-dom";
 import { FiLogIn } from 'react-icons/fi';
 
-import { Container, LoginCard, Logo, CenteredContent } from './styles';
+import { Container, LoginCard, Logo, CenteredContent, WrongLog } from './styles';
 
 import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isErrored, setIsErrored] = useState(false);
 
     const { signIn } = useAuth();
+    const history = useHistory();
 
     const submitHandler = useCallback(async (e) => {
         try {
             e.preventDefault();
             await signIn({email, password});
+            history.push('/mural');
         } catch (error) {
-            console.log(error);
+            setIsErrored(true);
         }
 
-    }, [email, password, signIn]);
+    }, [email, password, signIn, history]);
 
     return (
         <Container>
@@ -52,6 +56,11 @@ const Login = () => {
                         />
                         <button type="submit">ENTRAR</button>
                     </form>
+                    {isErrored &&
+                            <WrongLog>
+                                <p>Usuário ou senha incorreta*</p>
+                            </WrongLog>
+                    }
                 </LoginCard>
             </CenteredContent>
         </Container>
