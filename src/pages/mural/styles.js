@@ -122,7 +122,6 @@ export const Task = styled.div`
     overflow-wrap: break-word;
     border-radius: 10px;
     padding: 16px 20px;
-    transition: transform 0.2s;
 
     position: relative;
 
@@ -138,10 +137,6 @@ export const Task = styled.div`
         }
 
        
-    }
-
-    &:hover {
-        transform: translateX(13px);
     }
 
     button {
