@@ -114,36 +114,3 @@ export const TaskArea = styled.div`
         width: 300px;
     }
 `;
-
-export const Task = styled.div`
-    margin: 5px auto;
-    max-width:  690px;
-    background-color: white;
-    overflow-wrap: break-word;
-    border-radius: 10px;
-    padding: 16px 20px;
-
-    position: relative;
-
-    /* display: flex;
-    justify-content: space-between; */
-
-    p {
-        max-width: 480px;
-        display: inline-block;
-
-        @media(max-width: 425px) {
-        max-width: 300px;
-        }
-
-       
-    }
-
-    button {
-        border: none;
-        position: absolute;
-        top: 8px;
-        right: 8px;
-    }
-
-`;

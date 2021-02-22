@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { FiLogIn } from 'react-icons/fi';
 
 import { Container, LoginCard, Logo, CenteredContent } from './styles';
@@ -43,10 +43,10 @@ const SignUp = () => {
                 <LoginCard>
                     <h1>TASK .IO</h1>
                     <span>
-                        <a href='/'>
+                        <Link to='/'>
                         <FiLogIn />
                         Login
-                        </a>
+                        </Link>
                     </span>
                     <form onSubmit={submitHandler}>
                         <input 

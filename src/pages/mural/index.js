@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from "react-router-dom";
-import { FiPlus, FiLogOut } from 'react-icons/fi';
+import { FiPlus, FiLogOut, } from 'react-icons/fi';
 
-import { Header, ContentContainer, Task, TaskArea, Wrapper } from './styles'
+import { Header, ContentContainer, TaskArea, Wrapper } from './styles'
 
 import Modal from '../../components/Modal';
+import Task from '../../components/Task';
 import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 
@@ -30,7 +31,7 @@ const Mural = () => {
         setShowModal(!showModal);
     }, [showModal]);
 
-    const handleDeleteTask = useCallback(async (id) => {
+    const deleteTask = useCallback(async (id) => {
         await api.delete(`/tasks/${id}`, {
             headers: {
                 Authorization: 'Bearer ' + token 
@@ -61,10 +62,60 @@ const Mural = () => {
         setNotes([...notes, newTask]);
     }, [notes, token]);
 
+    const updateTaskDescription = useCallback(async (id, description) => {
+        await api.patch(`tasks/${id}`, 
+            {
+                description
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + token 
+                },
+            }
+        );
+
+        const newNotes = notes.map(note => {
+            if (note._id === id) {
+                note.description = description;
+            }
+            
+            return note;
+        });
+
+        setNotes(newNotes);
+
+    }, [token, notes]);
+
     const handleLogOut = useCallback(async () => {
         await signOut();
         history.push('/');
     }, [signOut, history]);
+
+    const handleCompleted = useCallback(async (id, noteStatus) => {
+        await api.patch(`tasks/${id}`, 
+            {
+                completed: !noteStatus
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + token 
+                },
+            }
+        );
+
+        const newNotes = notes.map(note => {
+            if (note._id === id) {
+                note.completed = true;
+            }
+            
+            return note;
+        });
+
+        setNotes(newNotes);
+        
+    }, [token, notes]);
 
 
     return (
@@ -77,12 +128,12 @@ const Mural = () => {
                 </Header>
                 <TaskArea>
                     {notes.map( note => (
-                        <Task key={note._id}>
-                            <p>{note.description}</p>
-                            <button onClick={() => handleDeleteTask(note._id)}>
-                                <span>x</span>
-                            </button>
-                        </Task>
+                        <Task 
+                            note={note} key={note._id} 
+                            handleCompleted={handleCompleted} 
+                            updateTaskDescription={updateTaskDescription}
+                            deleteTask={deleteTask}
+                        />
                     ))}
                 </TaskArea>
                 <button onClick={newTaskHandle}>
