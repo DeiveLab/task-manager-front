@@ -8,26 +8,17 @@ export const TaskContent = styled.div`
     border-radius: 10px;
     padding: 16px 20px;
 
-    position: relative;
+    display: flex;
+    justify-content: center;
 
     p {
-        max-width: 480px;
-        display: inline-block;
-
-        @media(max-width: 425px) {
-        max-width: 300px;
-        }
-
-       
+        min-width: 40%;
+        flex: 1;
     }
 
 
     div {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
         margin-left: 8px;
-        right: 8px;
 
         button {
             border: none;

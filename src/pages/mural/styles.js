@@ -100,7 +100,13 @@ export const Header = styled.div`
 `;
 
 export const TaskArea = styled.div`
-    width: 960px;
+    padding: 0 30px;
+    width: 50vw;
+
+    @media(max-width: 900px) {
+        width: 70vw;
+    }
+    /* width: 960px;
     padding: 0 30px;
 
 
@@ -112,5 +118,5 @@ export const TaskArea = styled.div`
     }
     @media(max-width: 375px) {
         width: 300px;
-    }
+    } */
 `;
