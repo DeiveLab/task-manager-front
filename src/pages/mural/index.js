@@ -107,7 +107,7 @@ const Mural = () => {
 
         const newNotes = notes.map(note => {
             if (note._id === id) {
-                note.completed = true;
+                note.completed = noteStatus;
             }
             
             return note;

@@ -9,9 +9,9 @@ const Task = ({ note, handleCompleted, updateTaskDescription, deleteTask }) => {
     const [description, setDescription] = useState(note.description);
 
     const completeTask = useCallback(async () => {
+        await handleCompleted(note._id, !completed);
+        
         setCompleted(!completed);
-
-        await handleCompleted(note._id, completed);
 
     }, [handleCompleted, note._id, completed]);
 
