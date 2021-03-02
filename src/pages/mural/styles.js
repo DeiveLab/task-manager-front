@@ -29,8 +29,10 @@ export const Wrapper = styled.div`
             top: 65px;
         }
 
-        @media(max-width: 400px) {
-            top: 60px;
+        @media(max-width: 500px) {
+            top: 65px;
+            right: 60px;
+            height: 30px;
         }
 
         }
