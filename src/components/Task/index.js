@@ -4,14 +4,15 @@ import { FiSquare, FiCheckSquare, FiEdit2 } from 'react-icons/fi';
 import { TaskContent, TaskEdition } from './style';
 
 const Task = ({ note, handleCompleted, updateTaskDescription, deleteTask }) => {
-    const [completed, setCompleted] = useState(false);
+    const [completed, setCompleted] = useState(note.completed);
     const [onEdition, setOnEdition] = useState(false);
     const [description, setDescription] = useState(note.description);
 
     const completeTask = useCallback(async () => {
+        setCompleted(!completed);
+
         await handleCompleted(note._id, completed);
 
-        setCompleted(!completed);
     }, [handleCompleted, note._id, completed]);
 
     const handleOpenTask = useCallback(() => {

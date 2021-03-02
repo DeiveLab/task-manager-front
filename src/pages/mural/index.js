@@ -95,7 +95,7 @@ const Mural = () => {
     const handleCompleted = useCallback(async (id, noteStatus) => {
         await api.patch(`tasks/${id}`, 
             {
-                completed: !noteStatus
+                completed: noteStatus
             },
             {
                 headers: {
